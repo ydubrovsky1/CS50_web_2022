@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+<h1>Edit Page </h1>
+{{entry}}
+<form action="{% url 'encyclopedia:editpg' %}" method="POST">
+    {% csrf_token %}
+    <textarea class="newpg_form" rows="4" columns="40" name="newpg_text">{{entry_body}}</textarea>
+    <input type="hidden" value={{entry}} name="entry">
+    <input class="button" type="submit" value="Submit Your Entry">
+</form>
+
+
+{% endblock %}

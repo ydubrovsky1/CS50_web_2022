@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Style</title>
+        <style>
+            h1{
+                color: blue;
+                text-shadow: 5px;
+            }
+            div{
+                /*FONTS*/
+                /*includes a backup font*/
+                font-family: Arial, sans-serif;
+                font-size: 20px;
+                font-weight: bold;
+                
+                /*FORMATTING*/
+                width: 500px;
+                height: 400px;
+                background-color: aqua;
+                /*not bump up on edge. on inside of element*/
+                padding: 20px;
+                /*outside of element*/
+                margin: 50px;
+                border: 3px solid black;
+            }
+            table{
+                border: 1px solid black;
+                /*avoid a double border*/
+                border-collapse: collapse;
+            }
+            /*style table data and headers same way*/
+            td, th{
+                border: 1px solid black;
+            }
+
+            /*select by id--way to give unique name to element*/
+            #foo{
+                color: blue;
+            }
+             /*select by class--multiple elements could have same class*/
+             .baz{
+                 color: black;
+             }
+        </style>
+    </head>
+    <body style="text-align: center">
+       <h1 id="foo">Welcome to me!</h1>
+       <h1 class="baz">Welcome to cat!</h1>
+       <h1 class="baz">Welcome to dog!</h1>
+       <h1>Welcome to you!</h1>
+       Hello.
+       <div>
+        Hello, world!
+    </div>
+    </body>
+
+</html>

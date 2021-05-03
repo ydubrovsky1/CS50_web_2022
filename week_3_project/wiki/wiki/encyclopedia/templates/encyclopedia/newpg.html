@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+<h1>Create New Page</h1>
+
+<form action="{% url 'encyclopedia:newpg' %}" method="POST">
+    {% csrf_token %}
+    <input class="newpg_form" type="text" name="newpg_title" placeholder="Entry Title">
+    <br>
+    <br>
+    <textarea class="newpg_form" rows="4" columns="40" name="newpg_text" placeholder="Entry Definition/Additional Info:"></textarea>
+    <input class="button" type="submit" value="Submit Your Entry">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+div ul {
+  font-size: 14px;
+  color: red;
+}
+
+div ol {
+  font-size: 18px;
+  /*now chan change this by changing $color variable*/
+  color: red;
+}
+/*# sourceMappingURL=variables.css.map */
