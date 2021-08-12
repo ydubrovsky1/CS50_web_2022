@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+    <h1>Active Listings</h1>
+    {% for listing in listings %}
+    {% if listing.active == True %}
+    <div class="row">
+      <div class="col-6">
+        <h2>{{listing.name}}</h2>
+        <br>
+        <h4>{{listing.description}}</h4>
+        <br>
+        <h5>Price: ${{listing.min_bid}}</h5>
+        <br>
+        <a href="{% url 'listingview' listing.id %}">See Listing Details</a>            
+      </div>
+      <div class="col-6">
+        <img src="{{listing.photo_url}}" alt="Photo Unavailable" width="50%" height="80%">
+      </div>      
+    </div>
+    <br>
+    <br>
+    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________
+    <br>
+    <br>
+    {% endif %}
+    {% endfor %} 
+      
+    <a href="{% url 'newlisting' %}">Create New Listing</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist:</h2>
+    <table>
+        {% for listing in watchlist %}
+        <div class="row">
+        <div class="col-3">
+              <h2>{{listing.name}}</h2>
+              <br>
+              <h4>{{listing.description}}</h4>
+              <br>
+              <h5>Price: ${{listing.min_bid}}</h5>
+              <br>
+              <a href="{% url 'listingview' listing.id %}">See Listing Details</a>
+        
+        </div>
+        <div class="col-6">
+            <img src="{{listing.photo_url}}" alt="Photo Unavailable" width="80%" height="100%">
+        </div>
+        <div class="col-2">
+            {% if listing.active == False %}
+                <h5 style="color:red;">Item No Longer Active</h5>
+            {% endif %}
+            <!--delete from watchlist-->
+        <form action="{% url 'watchlist' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+              <input autofocus class="form-control" type="hidden" name="listing_id" value="{{listing.id}}">
+          </div>
+          <div class="form-group">
+              <input autofocus class="form-control" type="hidden" name="do_what" value="delete">
+          </div>
+          <input class="btn btn-primary" type="submit" value="Delete From Watchlist">
+        </form>
+        </div>
+        <div class="col-1">
+        </div>
+        </div>   
+        <br>
+        <br>
+        ____________________________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>   
+        {% endfor %}
+
+      </table>
+{% endblock %}

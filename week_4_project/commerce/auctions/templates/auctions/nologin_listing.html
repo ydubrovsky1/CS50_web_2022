@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% if listing.active == True %}
+    <h2>active listing</h2>
+{% else %}
+    <h2>Listing No Longer Active</h2>
+{% endif %}
+    
+
+   {{listing.name}}
+   <br>
+   Listed By: {{listing.owner}}
+   <br>
+   {{listing.description}}
+   <br>
+   Current bid:{{listing.min_bid}}
+   <br>
+   Current winner:
+   <tr>
+       <td>{{listing.winning_user}}</td>
+   </tr>
+   <br>
+   <img src={{listing.photo_url}} alt="Photo Unavailable">
+    <br>
+    Comments:
+    <table style="width:100%">
+        <tr>
+          <th>User</th>
+          <th>Comment</th>
+        </tr>
+        {% for  comment in comments %}
+        <tr>
+            <td>{{comment.user}}</td>
+            <td>{{comment.comment}}</td>
+        </tr>
+        {% endfor %}
+
+ 
+{% endblock %}

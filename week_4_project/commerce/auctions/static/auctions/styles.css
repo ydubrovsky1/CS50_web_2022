@@ -1,0 +1,26 @@
+body {
+    padding: 10px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    border-spacing: 5px;
+    width: 100%;
+    position:static;
+    background-color: white;
+}
+
+h1 {
+    color: black;
+    background-color: white;
+}
+
+.nav{
+    background-color: white;
+}
+
+#active_listing{
+    color:teal;
+}

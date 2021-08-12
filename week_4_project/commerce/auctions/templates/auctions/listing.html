@@ -1,0 +1,105 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="row" width="100%">
+<div class="col-6">
+<h1>{{listing.name}}</h1>
+{% if listing.active == False %}
+    <h2>Listing No Longer Active</h2>
+    {% if listing.winning_user == user.username %}
+        <h2>Congratulations {{user.username}} You Had The Winning Bid!</h2>
+    {% endif %}
+{% else %}
+    <h5 id="active_listing">active listing</h5>    
+{% endif %}   
+   <br>
+   <b>Listed By:</b> {{listing.owner}}
+   <br>
+   <b>Description:</b>
+   {{listing.description}}
+   <br>
+   <b>Current bid:</b>{{listing.min_bid}}
+   <br>
+   <b>Current winner:</b>
+   <tr>
+       <td>{{listing.winning_user}}</td>
+   </tr>
+   <br>
+      <!-- Place Bid --> 
+      <form action="{% url 'bid' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control" type="hidden" name="listing_id" value="{{listing.id}}">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="number" name="bid" placeholder="Input Bid" min=".01" max="1000000" step=".01" value="10" required>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit Bid">
+        </form>
+</div>
+<div class="col-6">
+   <img src={{listing.photo_url}} alt="Photo Unavailable" height="100%" width="80%">
+    <br>
+</div>
+</div>
+
+
+<div class="row">
+    <h2>Comments</h2>
+</div>
+
+<div class="row">
+<div class="col-6">
+    <!--Comments-->
+    <table width="80%">
+        <tr>
+          <th>User</th>
+          <th>Comment</th>
+        </tr>
+        {% for  comment in comments %}
+        <tr>
+            <td>{{comment.user}}</td>
+            <td>{{comment.comment}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="col-6 text-center">
+    <!-- Add to watchlist -->
+    <form action="{% url 'watchlist' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control" type="hidden" name="listing_id" value="{{listing.id}}">
+        </div>
+        <div class="form-group">
+            <input autofocus class="form-control" type="hidden" name="do_what" value="add">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add To Watchlist">
+    </form>
+            <!-- Close Auction -->
+        <form action="{% url 'close' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input autofocus class="form-control" type="hidden" name="listing_id" value="{{listing.id}}">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Close Auction">
+    </form> 
+</div>
+</div>
+<div class="row">
+<div class="col-6">                        
+
+                       <!-- Add Comment --> 
+    <form action="{% url 'comment' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control" type="hidden" name="listing_id" value="{{listing.id}}">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="comment" placeholder="Comment">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Post Comment">
+        </form>
+</div>
+ </div>
+ {% endblock %}
