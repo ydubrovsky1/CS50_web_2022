@@ -6,11 +6,12 @@
         <title>{% block title %}Social Network{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Network</a>
+            <a class="navbar-brand" href="#"><i class="fab fa-earlybirds"></i>Tweeter</a>
           
             <div>
               <ul class="navbar-nav mr-auto">
@@ -29,6 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                     </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary" type="button" id="createNewPost"><i class="fas fa-pen-nib"></i> Create New Post</button>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -42,8 +46,25 @@
           </nav>
         
         <div class="body">
-            {% block body %}
+            <div id="createNewPost-view">
+                <h3>Create New Post</h3>
+                <form id="compose-form" action="{% url 'newPost' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input disabled class="form-control" value="{{ request.user.username }}">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="newPost_body" placeholder="What's On Your Mind?">
+                    </div>
+                    <input type="submit" class="btn btn-primary"/>
+                    <button class="btn btn btn-danger" type="button" id="cancelNewPost"><i class="fas fa-window-close"></i> Cancel</button>
+                </form>
+            </div>
+            {% block body %}   
             {% endblock %}
         </div>
     </body>
+    {% block script %}
+    <script src="{% static 'network/network.js' %}"></script>
+    {% endblock %}
 </html>
