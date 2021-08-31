@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Currency Exchange</title>
+        <script>
+            //AJAX: asynchronous JavaScript
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelector('form').onsubmit= function(){
+
+                    //send GET request to URL
+                    //fetch returns 'promise'. use .then with promise
+                    fetch('https://api.exchangeratesapi.io/latest?base=USD')
+                    //put response in json form
+                    .then(response => response.json())
+                    .then(data =>{
+                        //get from user input form. convert lowercase
+                        const currency = document.querySelector('#error').value.toLowerCase();
+                        //optional: log to console for debugging
+                        console.log(data);
+                        
+                        //get error user wants to see based on their currency input
+                        const key_error = data.error[currency];
+                        if(key_error !== undefined){
+                            //display result
+                            document.querySelector('#result').innerHTML = `unable to load due to: ${key_error}`;
+                        } 
+                        else{
+                            //dipslay error
+                            document.querySelector('#result').innerHTML = 'Invalid';
+                        }
+
+                    });
+                    //catch errors and log to console
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+                    //prevent default submission
+                    return false;
+                }
+            )};
+
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="error" placeholder="Error Info" type = "text">
+            <input type = "submit" value="GetInfo">
+        </form>
+        <div id ="result">
+
+        </div>
+    </body>
+</html>

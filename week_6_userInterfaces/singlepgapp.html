@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Single Page</title>
+        <style>
+            div{
+                display: none;
+            }
+        </style>
+        <script>
+            function showPage(page){
+                //hide all divs
+                document.querySelectorAll('div').forEach(div =>{
+                    div.style.display = 'none';
+                })
+                //show selected div
+                document.querySelector(`#${page}`).style.display = 'block';
+            }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('button').forEach(button => {
+                    button.onclick = function() {
+                        showPage(this.dataset.page);
+                    }
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <button data-page="pg1">Page 1</button>
+        <button data-page="pg2">Page 2</button>
+        <button data-page="pg3">Page 3</button>
+        <div id="pg1">
+            <h1>Page 1</h1>
+        </div>
+        <div id="pg2">
+            <h1>Page 2</h1>
+        </div>
+        <div id="pg3">
+            <h1>Page 3</h1>
+        </div>
+    </body>
+</html>

@@ -80,7 +80,7 @@ def comment(request):
         comment.save()
     return render(request, "auctions/listing.html",{
         "listing": listing,
-        "comments": listing.comment.all()
+        "comments": listing.listing_comment.all()
     })
 
 @login_required

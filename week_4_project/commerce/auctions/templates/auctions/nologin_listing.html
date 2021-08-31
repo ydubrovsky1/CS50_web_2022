@@ -1,40 +1,67 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-{% if listing.active == True %}
-    <h2>active listing</h2>
-{% else %}
-    <h2>Listing No Longer Active</h2>
-{% endif %}
+<div class="row" width="100%">
+    <div class="col-6">
+    <h1>{{listing.name}}</h1>
+    {% if listing.active == False %}
+        <h2 id="inactive_listing">Listing No Longer Active</h2>
+        {% if listing.winning_user == user.username %}
+            <h2>Congratulations {{user.username}} You Had The Winning Bid!</h2>
+        {% endif %}
+    {% else %}
+        <h5 id="active_listing">active listing</h5>    
+    {% endif %}   
+       <br>
+       <b>Listed By:</b> {{listing.owner}}
+       <br>
+       <b>Description:</b>
+       {{listing.description}}
+       <br>
+       <b>Current bid:</b>{{listing.min_bid}}
+       <br>
+       <b>Current winner:</b>
+       <tr>
+           <td>{{listing.winning_user}}</td>
+       </tr>
+       <br>
+    </div>
+    <div class="col-6">
+       <img src={{listing.photo_url}} alt="Photo Unavailable" height="100%" width="80%">
+        <br>
+    </div>
+    </div>
     
+    
+    <div class="row">
+    <div class="col-6">
+        <h2 position="center">Comments</h2>
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-6">
+        <!--Comments-->
+        <table width="80%">
+            <tr>
+              <th>User</th>
+              <th>Comment</th>
+            </tr>
+            {% for  comment in comments %}
+            <tr>
+                <td>{{comment.user}}</td>
+                <td>{{comment.comment}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-6 text-center">
 
-   {{listing.name}}
-   <br>
-   Listed By: {{listing.owner}}
-   <br>
-   {{listing.description}}
-   <br>
-   Current bid:{{listing.min_bid}}
-   <br>
-   Current winner:
-   <tr>
-       <td>{{listing.winning_user}}</td>
-   </tr>
-   <br>
-   <img src={{listing.photo_url}} alt="Photo Unavailable">
-    <br>
-    Comments:
-    <table style="width:100%">
-        <tr>
-          <th>User</th>
-          <th>Comment</th>
-        </tr>
-        {% for  comment in comments %}
-        <tr>
-            <td>{{comment.user}}</td>
-            <td>{{comment.comment}}</td>
-        </tr>
-        {% endfor %}
-
- 
-{% endblock %}
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-6">                        
+    </div>
+     </div>
+     {% endblock %}
+    

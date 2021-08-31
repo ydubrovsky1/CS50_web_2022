@@ -22,7 +22,7 @@ def add_one(id, origin, destination, duration):
     conn = sqlite3.connect('customer.db')
     c = conn.cursor()
 
-    c.execute("INSERT INTO flights VALUES (?,?, ?, ?)", id, origin, destination, duration)
+    c.execute("INSERT INTO flights VALUES (?,?, ?, ?)", (id, origin, destination, duration))
 
 
     #will push changes into the database
@@ -30,3 +30,30 @@ def add_one(id, origin, destination, duration):
 
     #close our connection
     conn.close()
+
+# delete record from table    
+def delete_one(id):
+    import sqlite3
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+
+    c.execute("DELETE FROM flights WHERE rowid = (?)", (id,))
+
+
+  
+    conn.commit()
+    conn.close()
+
+
+# add many records to table    
+def add_many(list):
+    import sqlite3
+    conn = sqlite3.connect('customer.db')
+    c = conn.cursor()
+
+    c.executemany("INSERT INTO flights VALUES (?,?, ?, ?)", (list))
+
+
+  
+    conn.commit()
+    conn.close()    

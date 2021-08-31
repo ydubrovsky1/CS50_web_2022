@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!--Counter script: counts incrementally on button-press -->
+        <title>Hello</title>
+        <script>
+            let counter = 0;
+            function count(){
+                counter++;
+                document.querySelector('h1').innerHTML = counter;
+
+                if(counter % 10 ===0){
+                    alert(`Counter is now ${counter}`)
+                }
+            }
+            //event listeners
+            //this will run once page fully loaded. takes args: event, function(in this case anonymous)
+            document.addEventListener('DOMContentLoaded', function(){
+                //once pg loaded, find button and assign it the function 'count'
+                document.querySelector('button').onclick = count;
+            });
+        </script>
+    </head>
+
+
+    <body>
+        <h1>0</h1>
+        <button>Count</button>
+    </body>
+</html>

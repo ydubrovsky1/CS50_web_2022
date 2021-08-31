@@ -5,7 +5,7 @@
 <div class="col-6">
 <h1>{{listing.name}}</h1>
 {% if listing.active == False %}
-    <h2>Listing No Longer Active</h2>
+    <h2 id="inactive_listing">Listing No Longer Active</h2>
     {% if listing.winning_user == user.username %}
         <h2>Congratulations {{user.username}} You Had The Winning Bid!</h2>
     {% endif %}

@@ -1,0 +1,44 @@
+textarea {
+    min-height: 400px;
+}
+
+#emails-view{
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+}
+
+.post {
+    color: black;
+    background-color: #b7f0fc;
+    border-style: solid;
+    border-width: 2px;
+    border-color:black;
+    padding: 20px;
+    margin-bottom: 10px;
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+#subject{
+    font: 2em sans-serif;
+    color: #1A90CE;
+}
+#sender{
+    font-weight: bold;
+}
+
+#email_body{
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 1px;
+    min-height: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+

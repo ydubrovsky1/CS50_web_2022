@@ -24,3 +24,7 @@ h1 {
 #active_listing{
     color:teal;
 }
+
+#inactive_listing{
+    color:red;
+}

@@ -25,6 +25,7 @@ class Listing(models.Model):
     category = models.CharField(blank=True, choices=CategoryType, max_length=15)
     active = models.BooleanField(default=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="u_listing", default=0) 
+    comment = models.ManyToManyField('Comment', blank=True, related_name="c_listing")
  
     def __str__(self):
         return f"{self.name}: {self.description}"
