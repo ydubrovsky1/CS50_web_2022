@@ -53,6 +53,20 @@ def newPost(request):
             "object": newPostObj,
         })
 
+def profile(request, user_name):
+    if(False):
+        return render(request, "network/error.html",{
+            "error": "user does not exist",
+        })
+    else:
+        user = User.objects.get(username=user_name)
+        posts = Post.objects.filter(author=user)
+    return render(request, "network/profile.html",{
+        "user":user,
+        "posts":posts,
+    })
+
+
 def register(request):
     if request.method == "POST":
         username = request.POST["username"]

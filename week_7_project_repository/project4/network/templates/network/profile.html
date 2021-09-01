@@ -1,7 +1,15 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    {% for post in posts%}
+<div class=" container d-lg-flex p-2 justify-content-flex-start">
+    <div class="d-flex flex-row"> 
+        <h1>{{user}}</h1>
+        <br>
+        <button class="btn btn-dark" type="button" id="followbtn">Follow</button>
+    </div>
+</div>
+
+{% for post in posts%}
     <div class=" container border border-primary d-lg-flex p-2">
         <div class="d-flex flex-column">
             <div class="d-flex flex-row">

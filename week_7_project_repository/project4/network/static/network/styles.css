@@ -2,3 +2,13 @@
     font-weight: bold;
     font-size: larger;
 }
+
+.container{
+   justify-content: space-between; 
+}
+
+#followbtn{
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 20px;
+}

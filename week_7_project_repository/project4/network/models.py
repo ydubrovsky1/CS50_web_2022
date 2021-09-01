@@ -3,7 +3,8 @@ from django.db import models
 
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
-    tweets = models.ManyToManyField('Post', blank=True, related_name="post_user") 
+    tweets = models.ManyToManyField('Post', blank=True, related_name="post_user")
+    following = models.ManyToManyField('User', blank=True, related_name="user_following") 
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
