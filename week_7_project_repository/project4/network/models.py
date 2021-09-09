@@ -5,6 +5,7 @@ class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     tweets = models.ManyToManyField('Post', blank=True, related_name="post_user")
     following = models.ManyToManyField('User', blank=True, related_name="user_following") 
+    followers = models.ManyToManyField('User', blank=True, related_name="user_followers")
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)

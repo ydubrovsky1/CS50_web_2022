@@ -10,11 +10,38 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     document.querySelector('#followbtn').addEventListener('click', ()=>{
         followBtn = document.querySelector('#followbtn')
-        if(followBtn.innerHTML == "Follow"){
+        if(followBtn.value == "Follow"){
+            fetch('/follow',{
+                method: 'POST', 
+                body: JSON.stringify({
+                    userToFollow: document.querySelector('#profile_user').innerHTML,
+                    followRequest: "follow",
+                })
+            })
+            .then(response => response.json())
+                .then(result => {
+                // Print result
+                console.log(result);
+            });
+
             followBtn.innerHTML = "Unfollow";
+            followBtn.value = "Unfollow";
         }
         else{
-            followBtn.innerHTML = "Follow"
+            fetch('/follow',{
+                method: 'POST', 
+                body: JSON.stringify({
+                    userToFollow: document.querySelector('#profile_user').innerHTML,
+                    followRequest: "unfollow",
+                })
+            })
+            .then(response => response.json())
+                .then(result => {
+                // Print result
+                console.log(result);
+            });
+            followBtn.innerHTML = "Follow";
+            followBtn.value = "Follow";
         }
 
     })

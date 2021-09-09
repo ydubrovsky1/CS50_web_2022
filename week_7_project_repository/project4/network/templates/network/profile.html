@@ -1,11 +1,17 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
+Following: {{following}}
 <div class=" container d-lg-flex p-2 justify-content-flex-start">
     <div class="d-flex flex-row"> 
-        <h1>{{user}}</h1>
-        <br>
-        <button class="btn btn-dark" type="button" id="followbtn">Follow</button>
+        <h1 id="profile_user" value="fred">{{profile_user}}</h1>
+        {% if not ownPage%}
+            {% if following %}
+                <button class="btn btn-dark" type="button" id="followbtn" value="Unfollow">Unfollow</button>
+            {% else %}
+                <button class="btn btn-dark" type="button" id="followbtn" value="Follow">Follow</button>
+            {% endif %}
+        {% endif %}
     </div>
 </div>
 
